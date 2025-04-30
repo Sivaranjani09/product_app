@@ -12,8 +12,6 @@ class Product {
     required this.price,
     required this.imageUrl,
   });
-
-  // From JSON to Product object
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['_id'] ?? json['id'], // Accept both _id and id
@@ -23,8 +21,6 @@ class Product {
       imageUrl: json['imageUrl'] ?? '',
     );
   }
-
-  // Convert Product object to JSON
   Map<String, dynamic> toJson() {
     return {
       'name': name,
