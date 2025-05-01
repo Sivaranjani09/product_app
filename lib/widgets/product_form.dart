@@ -4,7 +4,7 @@ import '../models/product.dart';
 import '../providers/product_provider.dart';
 
 class ProductForm extends StatefulWidget {
-  final Product? product; // The product to edit (null if adding a new product)
+  final Product? product; 
 
   ProductForm({this.product});
 
@@ -16,9 +16,7 @@ class _ProductFormState extends State<ProductForm> {
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _priceController = TextEditingController();
-  final _imageUrlController = TextEditingController(); // NEW
-
-  // Set initial values if the product is passed (for editing)
+  final _imageUrlController = TextEditingController(); 
   @override
   void initState() {
     super.initState();
@@ -26,7 +24,7 @@ class _ProductFormState extends State<ProductForm> {
       _nameController.text = widget.product!.name;
       _descriptionController.text = widget.product!.description;
       _priceController.text = widget.product!.price.toString();
-      _imageUrlController.text = widget.product!.imageUrl; // NEW
+      _imageUrlController.text = widget.product!.imageUrl; 
     }
   }
 
@@ -34,7 +32,7 @@ class _ProductFormState extends State<ProductForm> {
     final name = _nameController.text;
     final description = _descriptionController.text;
     final price = double.tryParse(_priceController.text) ?? 0.0;
-    final imageUrl = _imageUrlController.text; // NEW
+    final imageUrl = _imageUrlController.text; 
 
     if (name.isEmpty || description.isEmpty || imageUrl.isEmpty || price <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -44,11 +42,11 @@ class _ProductFormState extends State<ProductForm> {
     }
 
     final newProduct = Product(
-      id: widget.product?.id ?? '', // Keep the ID if editing, else set empty
+      id: widget.product?.id ?? '', 
       name: name,
       description: description,
       price: price,
-      imageUrl: imageUrl, // NEW
+      imageUrl: imageUrl, 
     );
 
     if (widget.product == null) {
@@ -57,7 +55,7 @@ class _ProductFormState extends State<ProductForm> {
       Provider.of<ProductProvider>(context, listen: false).updateProduct(newProduct);
     }
 
-    Navigator.pop(context); // Return after saving
+    Navigator.pop(context);
   }
 
   @override
@@ -85,7 +83,7 @@ class _ProductFormState extends State<ProductForm> {
               keyboardType: TextInputType.number,
             ),
             TextFormField(
-              controller: _imageUrlController, // NEW
+              controller: _imageUrlController, 
               decoration: InputDecoration(labelText: 'Image URL'),
             ),
             SizedBox(height: 20),
